@@ -1,0 +1,56 @@
+User.objects.create_user('User1')
+User.objects.create_user('User2')
+
+Author.objects.create(user = User.objects.all()[0]) 
+Author.objects.create(user = User.objects.all()[1])
+
+Category.objects.create(name = 'category_name1')
+Category.objects.create(name = 'category_name2')
+Category.objects.create(name = 'category_name3')
+Category.objects.create(name = 'category_name4')
+
+text = 'text'
+header = 'header'
+author = Author.objects.all()[0]
+post_type = 'AR'
+Post.objects.create(author = author,text=text,header=header,post_type=post_type)
+author = Author.objects.all()[1]
+Post.objects.create(author = author,text=text+'1',header=header+'1',post_type=post_type)
+post_type = 'NW'
+Post.objects.create(author = author,text=text+'2',header=header+'2',post_type=post_type)
+
+cat = Category.objects.all()
+pos = Post.objects.all()
+
+PostCategory.objects.create(category = cat[0],post = pos[0])
+PostCategory.objects.create(category = cat[1],post = pos[0])
+
+PostCategory.objects.create(category = cat[1],post = pos[1])
+PostCategory.objects.create(category = cat[2],post = pos[1])
+
+PostCategory.objects.create(category = cat[2],post = pos[2])
+PostCategory.objects.create(category = cat[3],post = pos[2])
+
+use = User.objects.all()
+comment_text='comment'
+Comment.objects.create(post = pos[0], user = use[0], text = comment_text+'1')
+Comment.objects.create(post = pos[1], user = use[1], text = comment_text+'2')
+Comment.objects.create(post = pos[2], user = use[0], text = comment_text+'3')
+
+
+[i.like() for i in Post.objects.all()]
+[i.like() for i in Comment.objects.all()]
+[i.update_rating() for i in Author.objects.all()]
+
+Author.objects.all().order_by('-rating').first()
+
+best_post = Post.objects.all().order_by('-rating').first()
+best_post.created_at.date()
+best_post.author.user.username
+best_post.rating
+best_post.header
+best_post.preview()
+[[i.created_at.date(), i.user.username,i.rating,i.text]for i in Comment.objects.filter(post=best_post)]
+
+
+
