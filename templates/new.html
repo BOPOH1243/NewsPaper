@@ -1,10 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% block title %}
+New
+{% endblock title %}
+{% block content %}
+<h1>{{ new.header|censor }}</h1>
+<ul>
+    <li>
+        {{new.header|censor}}
+    </li>
+    <li>
+        {{new.text|censor}}
+    </li>
+    <li>
+        <ul>
+            {% for category in new.categories.all %}
+            <li>{{category.name}}</li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li>
+        Опубликовано: {{new.created_at}}; Изменено: {{new.updated_at}}
+    </li>
+    <li>
+        rating: {{new.rating}}
+    </li>
+</ul>
+{% endblock content %}

@@ -23,6 +23,9 @@ class Author(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True)
 
+    def __str__(self):
+        return f'{self.name}'
+
 #Post.objects.create(author = )
 class Post(models.Model):
     TYPES = [
@@ -47,6 +50,9 @@ class Post(models.Model):
 
     def preview(self, length=124):
         return self.text[:length]+'...'
+
+    def __str__(self):
+        return f'{self.categories.all()} {self.header} {self.text} {self.rating} {self.updated_at}'
 
 
 
