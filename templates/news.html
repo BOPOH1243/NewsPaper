@@ -15,7 +15,7 @@ News
             <li>{{new.header|censor}}</li>
             <li>{{new.preview|censor|truncatechars:20}}</li>
             <li><a href="{{new.id}}">читать полностью</a></li>
-            <li>Опубликовано: {{new.created_at}}; Изменено: {{new.updated_at}}</li>
+            <li>Опубликовано: {{new.created_at|date:'M d Y'}}; Изменено: {{new.updated_at|date:'M d Y'}}</li>
 
             <ul dir="ltr">
                 {% for category in new.categories.all %}
