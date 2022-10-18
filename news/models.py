@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here. Comment.objects.filter(post=best_post)
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
@@ -53,6 +54,9 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.categories.all()} {self.header} {self.text} {self.rating} {self.updated_at}'
+
+    def get_absolute_url(self):
+        return reverse('new_detail', args=[str(self.id)])
 
 
 

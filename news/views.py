@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.http import HttpResponseRedirect
+from django.urls import reverse_lazy
 # Create your views here.
 from .models import *
 from .filters import NewsFilter
+from .forms import PostForm
 
 
 class NewsList(ListView):
@@ -27,5 +30,24 @@ class NewDetail(DetailView):
     template_name = 'new.html'
     context_object_name = 'new'
 
+class NewCreate(CreateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'new_edit.html'
+
+
 def create_new(request):
-    return render(request, 'new_edit.html', {})
+    form = PostForm()
+    if request.method =='POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/news/')
+
+    return render(request, 'new_edit.html', {'form':form})
+
+
+class NewUpdate(UpdateView):
+    form_class = PostForm
+    model = Post
+    template_name = 'new_edit.html'

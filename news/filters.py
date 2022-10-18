@@ -1,5 +1,6 @@
 from django_filters import FilterSet, ModelChoiceFilter, ModelMultipleChoiceFilter
 from .models import Post, Category
+from django_filters import *
 
 class NewsFilter(FilterSet):
     category = ModelChoiceFilter(
@@ -8,6 +9,7 @@ class NewsFilter(FilterSet):
         label='Category',
         #empty_label = 'any'
     )
+    #created = DateTimeFilter()
 
     class Meta:
         model = Post
