@@ -1,0 +1,18 @@
+{% extends 'default.html' %}
+{% block content %}
+<h1>Удаление новости</h1>
+<hr>
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Удалить новость:</p>
+    <p>Название:{{object.header}}</p>
+    <p>Текст:{{object.text}}</p>
+    <p>создано: {{object.created_at}} Изменено:{{object.updated_at}}</p>
+    <ul>
+        {% for category in object.categories.all %}
+        <li> Категория: {{category.name}}</li>
+        {% endfor %}
+    </ul>
+    <input type="submit" value="Delete"/>
+</form>
+{% endblock content %}
