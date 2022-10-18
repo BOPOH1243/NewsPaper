@@ -10,3 +10,6 @@ urlpatterns = [
     path('<int:pk>/update/', NewUpdate.as_view(), name = 'new_update'),
     path('<int:pk>/delete/', NewDelete.as_view(), name = 'new_delete'),
 ]
+
+
+#<str:post_type>/

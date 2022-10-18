@@ -22,6 +22,7 @@ class NewsFilter(FilterSet):
         model = Post
         fields = {
             'header':['icontains'],
+            'post_type':['exact'],
             #'categories':['exact'],
             'created_at':[
                 'gt'
