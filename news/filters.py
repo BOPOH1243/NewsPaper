@@ -1,14 +1,20 @@
-from django_filters import FilterSet
-from .models import Post
+from django_filters import FilterSet, ModelChoiceFilter, ModelMultipleChoiceFilter
+from .models import Post, Category
 
 class NewsFilter(FilterSet):
+    category = ModelChoiceFilter(
+        field_name = 'postcategory__category',
+        queryset = Category.objects.all(),
+        label='Category',
+        #empty_label = 'any'
+    )
+
     class Meta:
         model = Post
         fields = {
             'header':['icontains'],
-            'category':['icontains'],
+            #'categories':['exact'],
             'created_at':[
-                'lt',
                 'gt'
             ],
         }
