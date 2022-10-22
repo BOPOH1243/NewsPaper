@@ -6,6 +6,7 @@ from django.urls import reverse_lazy
 from .models import *
 from .filters import NewsFilter
 from .forms import PostForm
+from django.contrib.auth.mixins import PermissionRequiredMixin
 
 
 class NewsList(ListView):
@@ -30,7 +31,8 @@ class NewDetail(DetailView):
     template_name = 'new.html'
     context_object_name = 'new'
 
-class NewCreate(CreateView):
+class NewCreate(PermissionRequiredMixin, CreateView):
+    permission_required = ('news.add_post')
     form_class = PostForm
     model = Post
     template_name = 'new_edit.html'
@@ -47,12 +49,14 @@ def create_new(request):
     return render(request, 'new_edit.html', {'form':form})
 
 
-class NewUpdate(UpdateView):
+class NewUpdate(PermissionRequiredMixin, UpdateView):
+    permission_required = ('news.change_post')
     form_class = PostForm
     model = Post
     template_name = 'new_edit.html'
 
-class NewDelete(DeleteView):
+class NewDelete(PermissionRequiredMixin, DeleteView):
+    permission_required = ('news.delete_post')
     model = Post
     template_name = 'new_delete.html'
     success_url = reverse_lazy('new_list')
