@@ -11,6 +11,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
+from django.template.loader import render_to_string
+from django.core.mail import EmailMultiAlternatives
 
 class NewsList(ListView):
     model = Post
@@ -41,7 +43,7 @@ class NewDetail(DetailView):
         if self.request.user.is_anonymous:
             return context
         context['user_subscribes'] = [i.category for i in UserSubscribe.objects.filter(user=self.request.user)]  #self.request.user.groups.filter()
-        print(context['user_subscribes'])
+        #print(context['user_subscribes'])
         return context
 
 class NewCreate(PermissionRequiredMixin, CreateView):
@@ -52,15 +54,30 @@ class NewCreate(PermissionRequiredMixin, CreateView):
 
     def get_success_url(self):
         post = self.object
-        print(post)
+        #print(post)
         subscribers = post.post_subscribers()
-        print(subscribers)
-        send_mail(
-            subject=f'новый пост по подписке{post.header}',
-            message = f'{post.preview(length=50)}',
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[i.email for i in subscribers]
+        #print(subscribers)
+        #send_mail(
+        #    subject=f'новый пост по подписке{post.header}',
+        #    message = f'{post.preview(length=50)}',
+        #    from_email=settings.EMAIL_HOST_USER,
+        #    recipient_list=[i.email for i in subscribers]
+        #)
+        html_content = render_to_string(
+            'mail/subscribe_news.html',
+            {
+                'new': post,
+            }
         )
+        msg = EmailMultiAlternatives(
+            subject=f'Новость по подписке {post.header}',
+            body=post.preview(length=50),  # это то же, что и message
+            from_email=settings.EMAIL_HOST_USER,
+            to=[i.email for i in subscribers],  # это то же, что и recipients_list
+        )
+        msg.attach_alternative(html_content, "text/html")  # добавляем html
+
+        msg.send()
         return super().get_success_url()
 
 
@@ -95,4 +112,4 @@ def subscribe(request,pk):
     user_subscribes = UserSubscribe.objects.filter(user=user)
     if not pk in [i.category.pk for i in user_subscribes]:
         UserSubscribe.objects.create(user=user,category=Category.objects.get(pk=pk))
-    return redirect('/')
+    return redirect('/news/')
