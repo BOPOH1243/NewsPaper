@@ -23,11 +23,14 @@ class Author(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=64, unique=True)
+    subscribers = models.ManyToManyField(User, through='UserSubscribe')
 
     def __str__(self):
         return f'{self.name}'
 
 #Post.objects.create(author = )
+
+
 class Post(models.Model):
     TYPES = [
         ('AR', 'Article'),
@@ -41,6 +44,14 @@ class Post(models.Model):
     header = models.CharField(max_length=96,default='default')
     text = models.TextField(default='default')
     rating = models.IntegerField(default=0)
+
+    def post_subscribers(self):
+        subscribers = []
+        for category in self.categories:
+            for subscriber in category.subscribers:
+                if subscriber not in subscribers:
+                    subscribers.append(subscriber)
+        return subscribers
 
     def like(self):
         self.rating+=1
@@ -82,3 +93,6 @@ class Comment(models.Model):
         self.rating-=1
         self.save()
 
+class UserSubscribe:
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
