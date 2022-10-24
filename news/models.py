@@ -93,6 +93,6 @@ class Comment(models.Model):
         self.rating-=1
         self.save()
 
-class UserSubscribe:
+class UserSubscribe(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
