@@ -15,7 +15,11 @@ New
     <li>
         <ul>
             {% for category in new.categories.all %}
-            <li>{{category.name}}</li>
+            <li>
+                <p>{{category.name}}{% if not category in user_subscribes %}<button> <a href="categories/{{category.pk}}/subscribe/">подписаться</a> </button>{% endif %}</p>
+                <p>{{user_subscribes.all}}</p>
+            </li>
+
             {% endfor %}
         </ul>
     </li>

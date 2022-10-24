@@ -8,6 +8,9 @@ from .filters import NewsFilter
 from .forms import PostForm
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mail
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect
 
 class NewsList(ListView):
     model = Post
@@ -24,12 +27,22 @@ class NewsList(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['filterset'] = self.filterset
+        if self.request.user.is_anonymous:
+            return context
+        context['user_subscribes'] = [i.category for i in UserSubscribe.objects.filter(user=self.request.user)]
         return context
 
 class NewDetail(DetailView):
     model = Post
     template_name = 'new.html'
     context_object_name = 'new'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_anonymous:
+            return context
+        context['user_subscribes'] = [i.category for i in UserSubscribe.objects.filter(user=self.request.user)]  #self.request.user.groups.filter()
+        print(context['user_subscribes'])
+        return context
 
 class NewCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('news.add_post')
@@ -45,7 +58,7 @@ class NewCreate(PermissionRequiredMixin, CreateView):
         send_mail(
             subject=f'новый пост по подписке{post.header}',
             message = f'{post.preview(length=50)}',
-            from_email='djangotestmail1337@gmail.com',
+            from_email=settings.EMAIL_HOST_USER,
             recipient_list=[i.email for i in subscribers]
         )
         return super().get_success_url()
@@ -75,3 +88,11 @@ class NewDelete(PermissionRequiredMixin, DeleteView):
     model = Post
     template_name = 'new_delete.html'
     success_url = reverse_lazy('new_list')
+
+@login_required
+def subscribe(request,pk):
+    user = request.user
+    user_subscribes = UserSubscribe.objects.filter(user=user)
+    if not pk in [i.category.pk for i in user_subscribes]:
+        UserSubscribe.objects.create(user=user,category=Category.objects.get(pk=pk))
+    return redirect('/')

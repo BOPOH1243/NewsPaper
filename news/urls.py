@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import NewDelete, NewsList, NewDetail, create_new, NewCreate, NewUpdate
+from .views import NewDelete, NewsList, NewDetail, create_new, NewCreate, NewUpdate, subscribe
 
 
 urlpatterns = [
@@ -9,6 +9,7 @@ urlpatterns = [
     path('create/', NewCreate.as_view(), name='new_create'),
     path('<int:pk>/update/', NewUpdate.as_view(), name = 'new_update'),
     path('<int:pk>/delete/', NewDelete.as_view(), name = 'new_delete'),
+    path('categories/<int:pk>/subscribe/', subscribe, name='subscribe_to_category'),
 ]
 
 

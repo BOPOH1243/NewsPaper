@@ -25,7 +25,7 @@ News
 
             <ul dir="ltr">
                 {% for category in new.categories.all %}
-                <li>{{category.name}}</li>
+                <li><p>{{category.name}}{% if category not in user_subscribes %}<button> <a href="categories/{{category.pk}}/subscribe/">подписаться</a> </button>{% endif %}</p></li>
                 {% endfor %}
             </ul>
             <li>rating: {{new.rating}}</li>
