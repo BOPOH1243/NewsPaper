@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 # Create your models here. Comment.objects.filter(post=best_post)
+#
 class Author(models.Model):
     user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
     rating = models.IntegerField(default=0)
@@ -47,8 +48,8 @@ class Post(models.Model):
 
     def post_subscribers(self):
         subscribers = []
-        for category in self.categories:
-            for subscriber in category.subscribers:
+        for category in self.categories.all():
+            for subscriber in category.subscribers.all():
                 if subscriber not in subscribers:
                     subscribers.append(subscriber)
         return subscribers

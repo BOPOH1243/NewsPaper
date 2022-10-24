@@ -36,15 +36,19 @@ class NewCreate(PermissionRequiredMixin, CreateView):
     form_class = PostForm
     model = Post
     template_name = 'new_edit.html'
-    def form_valid(self, form):
+
+    def get_success_url(self):
         post = self.object
+        print(post)
         subscribers = post.post_subscribers()
+        print(subscribers)
         send_mail(
             subject=f'новый пост по подписке{post.header}',
             message = f'{post.preview(length=50)}',
             from_email='djangotestmail1337@gmail.com',
-            to=[i.email for i in subscribers]
+            recipient_list=[i.email for i in subscribers]
         )
+        return super().get_success_url()
 
 
 
