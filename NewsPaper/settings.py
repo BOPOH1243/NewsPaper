@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'news.apps.NewsConfig',
+    'django_apscheduler',
 
 ]
 
@@ -167,3 +168,4 @@ EMAIL_HOST_USER = 'pinus70@mail.ru'  # ваше имя пользователя,
 EMAIL_HOST_PASSWORD = '1AQ6VkUSuJ9BXwanc0nL' #'Truepasswordgen3'  # пароль от почты
 EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
