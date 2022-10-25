@@ -169,3 +169,4 @@ EMAIL_HOST_PASSWORD = '1AQ6VkUSuJ9BXwanc0nL' #'Truepasswordgen3'  # пароль
 EMAIL_USE_SSL = True  # Яндекс использует ssl, подробнее о том, что это, почитайте в дополнительных источниках, но включать его здесь обязательно
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25

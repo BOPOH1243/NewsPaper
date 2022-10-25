@@ -14,6 +14,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from ...models import *
 
+logger = logging.getLogger(__name__)
+
 def mail_distributon():
     print('mail_distribution')
     for user in User.objects.all():
@@ -46,3 +48,22 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         scheduler = BlockingScheduler(timezone = settings.TIME_ZONE)
+        scheduler.add_jobstore(DjangoJobStore(), 'default')
+
+        scheduler.add_job(
+            mail_distributon,
+            trigger=CronTrigger(
+                day_of_week="mon", hour="00", minute="00"
+            ),
+            id='mail_distribution',
+            max_instances=1,
+            replace_existing=True,
+        )
+        logger.info('Added job mail_distribution')
+        try:
+            logger.info("Starting scheduler...")
+            scheduler.start()
+        except KeyboardInterrupt:
+            logger.info("Stopping scheduler...")
+            scheduler.shutdown()
+            logger.info("Scheduler shut down successfully!")

@@ -6,7 +6,7 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 # в декоратор передаётся первым аргументом сигнал, на который будет реагировать эта функция, и в отправители надо передать также модель
-@receiver(post_save, sender=User)
+'''@receiver(post_save, sender=User)
 def notify_managers_appointment(sender, instance, created, **kwargs):
     if created:
         user = instance
@@ -23,4 +23,4 @@ def notify_managers_appointment(sender, instance, created, **kwargs):
             to=[user.email],  # это то же, что и recipients_list
         )
         msg.attach_alternative(html_content, "text/html")  # добавляем html
-        msg.send()
+        msg.send()'''
