@@ -11,11 +11,11 @@ class NewsConfig(AppConfig):
         from .scheduler import mail_scheduler
         print('started')
 
-        mail_scheduler.add_job(
+        """mail_scheduler.add_job(
             id='mail distribution',
             func=mail_distributon,
             trigger='interval',
             seconds=20,
             #trigger=CronTrigger(day_of_week="mon", hour="00", minute="00"),
         )
-        mail_scheduler.start()
+        mail_scheduler.start()"""
