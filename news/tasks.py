@@ -3,6 +3,14 @@ from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from .models import *
+from celery import shared_task
+import time
+
+@shared_task
+def hello():
+    time.sleep(10)
+    print("Hello, world!")
+
 
 def mail_distributon():
     print('mail_distribution')

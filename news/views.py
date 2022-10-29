@@ -13,6 +13,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.template.loader import render_to_string
 from django.core.mail import EmailMultiAlternatives
+from django.views import View
+from django.http import HttpResponse
+from .tasks import hello
 
 class NewsList(ListView):
     model = Post
@@ -113,3 +116,8 @@ def subscribe(request,pk):
     if not pk in [i.category.pk for i in user_subscribes]:
         UserSubscribe.objects.create(user=user,category=Category.objects.get(pk=pk))
     return redirect('/news/')
+
+class TestView(View):
+    def get(self, request):
+        hello.delay()
+        return HttpResponse('Hello!')

@@ -171,9 +171,21 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
 APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
-"""REDIS CELERY"""
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
+
+
+
+
+
+
+
+"""REDIS/CELERY"""
+#redis password YBiOMNzvkFAscJZxSVf1XvdkVzOUbG7z
+#CELERY_BROKER_URL = 'redis-10234.c55.eu-central-1-1.ec2.cloud.redislabs.com:10234'
+#CELERY_RESULT_BACKEND = 'redis-10234.c55.eu-central-1-1.ec2.cloud.redislabs.com:10234'
+redis_tutor_password = 'qPLcURn5hLhLMKDHIA6r24APhrHU9GkU'
+CELERY_BROKER_URL = f'redis://:{redis_tutor_password}@redis-14389.c300.eu-central-1-1.ec2.cloud.redislabs.com:14389'
+CELERY_RESULT_BACKEND = f'redis://:{redis_tutor_password}@redis-14389.c300.eu-central-1-1.ec2.cloud.redislabs.com:14389'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
