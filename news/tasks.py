@@ -5,6 +5,9 @@ from django.template.loader import render_to_string
 from .models import *
 from celery import shared_task
 import time
+from celery.schedules import crontab
+from NewsPaper.celery import app
+
 
 @shared_task
 def hello():
@@ -59,3 +62,11 @@ def send_subscribers_email(post_pk):
     msg.attach_alternative(html_content, "text/html")  # добавляем html
 
     msg.send()
+
+app.conf.beat_schedule = {
+    'action_every_monday_8am': {
+        'task': 'mail_distribution',
+        'schedule': crontab(hour=8, minute=0, day_of_week='monday'),
+        'args': (None),
+    },
+}
