@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+{% for new in news %}
+<p>{{new.header}}</p>
+<p>{{new.text|truncatechars:50}}</p>
+<a href="http://127.0.0.1:8000/news/{{new.pk}}">читать далее</a>
+<ul>
+    <li>категории:</li>
+    {% for category in new.categories.all %}
+    <li>{{category.name}}</li>
+    {% endfor %}
+</ul>
+{% endfor %}
+</body>
+</html>

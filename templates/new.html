@@ -1,0 +1,35 @@
+{% extends 'default.html' %}
+{% load custom_filters %}
+{% block title %}
+New
+{% endblock title %}
+{% block content %}
+<h1>{{ new.header|censor }}</h1>
+<ul>
+    <li>
+        {{new.header|censor}}
+    </li>
+    <li>
+        {{new.text|censor}}
+    </li>
+    <li>
+        <ul>
+            {% for category in new.categories.all %}
+            <li>
+                <p>{{category.name}}{% if not category in user_subscribes %}<button> <a href="categories/{{category.pk}}/subscribe/">подписаться</a> </button>{% endif %}</p>
+                <p>{{user_subscribes.all}}</p>
+            </li>
+
+            {% endfor %}
+        </ul>
+    </li>
+    <li>
+        Опубликовано: {{new.created_at|date:'M d Y'}}; Изменено: {{new.updated_at|date:'M d Y'}}
+    </li>
+    <a href="{{new.pk}}/update/">Изменить новость</a>
+    <a href="{{new.pk}}/delete/">Удалить новость</a>
+    <li>
+        rating: {{new.rating}}
+    </li>
+</ul>
+{% endblock content %}
