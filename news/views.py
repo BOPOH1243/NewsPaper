@@ -16,6 +16,8 @@ from django.core.mail import EmailMultiAlternatives
 from django.views import View
 from django.http import HttpResponse
 from .tasks import hello, mail_distributon
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 class NewsList(ListView):
     model = Post
@@ -41,6 +43,8 @@ class NewDetail(DetailView):
     model = Post
     template_name = 'new.html'
     context_object_name = 'new'
+    queryset = Post.objects.all()
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if self.request.user.is_anonymous:
@@ -48,6 +52,15 @@ class NewDetail(DetailView):
         context['user_subscribes'] = [i.category for i in UserSubscribe.objects.filter(user=self.request.user)]  #self.request.user.groups.filter()
         #print(context['user_subscribes'])
         return context
+
+    def get_object(self, *args, **kwargs):  # переопределяем метод получения объекта, как ни странно
+        obj = cache.get(f'post-{self.kwargs["pk"]}', None)  # кэш очень похож на словарь, и метод get действует так же. Он забирает значение по ключу, если его нет, то забирает None.
+        # если объекта нет в кэше, то получаем его и записываем в кэш
+        if not obj:
+            obj = super().get_object(queryset=self.queryset)
+            cache.set(f'post-{self.kwargs["pk"]}', obj)
+        return obj
+
 
 class NewCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('news.add_post')
