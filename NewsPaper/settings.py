@@ -197,21 +197,27 @@ LOGGING = {
     'style': '{',
     'formatters': {
         'simple': {
+            'style': '{',
             'format': '{levelname} {message}'
         },
         'debug_formatter': {
+            'style': '{',
             'format': '{asctime} {levelname} {message}'
         },
         'warning_formatter': {
+            'style': '{',
             'format': '{asctime} {levelname} {message} {pathname}'
         },
-        'general_formatter':{
-            'format':'{asctime} {levelname} {message} {module}'
+        'general_formatter': {
+            'style': '{',
+            'format': '{asctime} {levelname} {message} {module}'
         },
         'errors_formatter': {
+            'style': '{',
             'format': '{asctime} {levelname} {message} {module} {pathname} {exc_info}'
         },
         'mail_formatter': {
+            'style': '{',
             'format': '{asctime} {levelname} {message} {module} {pathname}'
         },
     },
