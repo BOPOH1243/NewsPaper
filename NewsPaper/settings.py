@@ -24,7 +24,6 @@ SECRET_KEY = 'django-insecure-^koy-dvw=c99!jgbv=#svc)16hh$#wecx#9_r3#khsho8!@gkh
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
 ALLOWED_HOSTS = []
 
 
@@ -55,6 +54,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -308,3 +308,8 @@ LOGGING = {
         }
     }
 }
+
+"""locale"""
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale')
+]
