@@ -1,16 +1,17 @@
 {% extends 'default.html' %}
 {% block content %}
-<h1>Удаление новости</h1>
+{% load i18n %}
+<h1>{% trans "delete new" %}</h1>
 <hr>
 <form action="" method="post">
     {% csrf_token %}
-    <p>Удалить новость:</p>
-    <p>Название:{{object.header}}</p>
-    <p>Текст:{{object.text}}</p>
-    <p>создано: {{object.created_at}} Изменено:{{object.updated_at}}</p>
+    <p>{% trans "delete new" %}:</p>
+    <p>{% trans "name" %}:{{object.header}}</p>
+    <p>{% trans "text" %}:{{object.text}}</p>
+    <p>{% trans "created at" %}: {{object.created_at}} {% trans "updated at" %}:{{object.updated_at}}</p>
     <ul>
         {% for category in object.categories.all %}
-        <li> Категория: {{category.name}}</li>
+        <li> {% trans "category" %}: {{category.name}}</li>
         {% endfor %}
     </ul>
     <input type="submit" value="Delete"/>

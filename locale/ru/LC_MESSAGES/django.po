@@ -1,0 +1,113 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-11-18 01:03+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+#: news/models.py:28
+msgid "category name"
+msgstr ""
+
+#: news/views.py:111
+msgid "Hello world"
+msgstr "Здарова"
+
+#: templates/default.html:21
+msgid "yobasite"
+msgstr "Быдлосайт"
+
+#: templates/default.html:31
+msgid "news"
+msgstr "новости"
+
+#: templates/default.html:32
+msgid "current"
+msgstr "текущий"
+
+#: templates/default.html:39
+msgid "admin"
+msgstr "Админка"
+
+#: templates/default.html:59
+msgid "Check out my new cool translation"
+msgstr "Зацени мой новый ахрененный перевод"
+
+#: templates/new.html:29 templates/news.html:25
+msgid "published"
+msgstr "опубликовано"
+
+#: templates/new.html:29 templates/news.html:25
+msgid "updated"
+msgstr "обновлено"
+
+#: templates/new.html:31
+msgid "edit new"
+msgstr "редактировать новость"
+
+#: templates/new.html:32 templates/new_delete.html:4
+#: templates/new_delete.html:8
+msgid "delete new"
+msgstr "удалить новость"
+
+#: templates/new.html:34 templates/news.html:32
+msgid "rating"
+msgstr "рейтинг"
+
+#: templates/new_delete.html:9
+msgid "name"
+msgstr "имя"
+
+#: templates/new_delete.html:10
+msgid "text"
+msgstr "текст"
+
+#: templates/new_delete.html:11
+msgid "created at"
+msgstr "создано в"
+
+#: templates/new_delete.html:11
+msgid "updated at"
+msgstr "изменено в"
+
+#: templates/new_delete.html:14
+msgid "category"
+msgstr "категория"
+
+#: templates/new_edit.html:4
+msgid "new"
+msgstr "новость"
+
+#: templates/news.html:9
+msgid "all news"
+msgstr "все новости"
+
+#: templates/news.html:11
+msgid "create new"
+msgstr "создать новость"
+
+#: templates/news.html:24
+msgid "read full"
+msgstr "читать полностью"
+
+#: templates/news.html:29
+msgid "subscribe"
+msgstr "подписаться"
+
+#: templates/news.html:39
+msgid "theres no news"
+msgstr "тут нет новостей"

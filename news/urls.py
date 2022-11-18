@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, include
 from .views import NewDelete, NewsList, NewDetail, create_new, NewCreate, NewUpdate, subscribe, TestView
 from django.views.decorators.cache import cache_page
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path('', NewsList.as_view(), name='new_list'),
@@ -12,6 +13,7 @@ urlpatterns = [
     path('categories/<int:pk>/subscribe/', subscribe, name='subscribe_to_category'),
     path('test/', TestView.as_view(), name='test'),
 ]
+
 
 
 #<str:post_type>/

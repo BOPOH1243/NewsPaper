@@ -1,2 +1,128 @@
 2022-11-13 17:05:44,348 INFO Watching for file changes with StatReloader autoreload
 2022-11-17 19:29:17,541 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:10:26,479 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:12:48,046 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:14:32,956 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:16:21,706 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:16:58,118 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:18:35,545 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:19:47,566 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:25:09,684 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 21:28:01,249 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:43:21,182 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:43:29,672 ERROR Internal Server Error: /news/ log
+Traceback (most recent call last):
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/response.py", line 92, in rendered_content
+    return template.render(context, self._request)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/backends/django.py", line 62, in render
+    return self.template.render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/templatetags/cache.py", line 53, in render
+    value = self.nodelist.render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/template/defaulttags.py", line 472, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+  File "/home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'set_language' not found. 'set_language' is not a valid view function or pattern name.
+2022-11-17 22:43:29,674 ERROR "GET /news/ HTTP/1.1" 500 181124 basehttp
+2022-11-17 22:50:38,004 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/urls.py changed, reloading. autoreload
+2022-11-17 22:50:38,508 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:51:38,658 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:52:31,262 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/urls.py changed, reloading. autoreload
+2022-11-17 22:52:31,716 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:52:46,883 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:54:35,135 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/urls.py changed, reloading. autoreload
+2022-11-17 22:54:35,666 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:55:11,342 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/urls.py changed, reloading. autoreload
+2022-11-17 22:55:11,825 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:55:51,363 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/urls.py changed, reloading. autoreload
+2022-11-17 22:55:51,862 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:55:57,187 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 22:58:21,491 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:05:22,415 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:10:00,473 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:11:19,591 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:12:54,834 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:15:09,386 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:47:53,597 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:49:10,997 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-17 23:49:11,546 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:49:30,990 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-17 23:49:31,467 INFO Watching for file changes with StatReloader autoreload
+2022-11-17 23:50:51,385 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:00:22,915 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:00:23,355 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:00:51,268 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:02:15,601 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:02:16,012 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:03:28,431 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:04:52,690 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:04:53,138 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:05:55,820 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:07:45,802 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:11:18,636 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:11:19,076 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:12:02,798 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:16:44,552 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:16:44,999 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:18:06,897 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:20:21,831 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:21:26,244 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:23:41,115 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:23:41,557 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:24:39,987 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:24:40,378 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:25:15,881 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:25:55,360 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:26:38,133 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:26:38,570 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:27:49,658 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:27:50,188 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:28:13,358 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:32:24,392 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:35:08,678 INFO /home/kali/PycharmProjects/pythonProject/NewsPaper/news/models.py changed, reloading. autoreload
+2022-11-18 00:35:09,150 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:38:37,804 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:40:29,904 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:42:29,124 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:45:25,369 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:50:04,869 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:53:35,116 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:54:29,166 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 00:59:49,994 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 01:00:42,952 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 01:02:07,712 INFO Watching for file changes with StatReloader autoreload
+2022-11-18 01:05:57,320 INFO Watching for file changes with StatReloader autoreload

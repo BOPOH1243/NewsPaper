@@ -2,11 +2,12 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.core.cache import cache
+from django.utils.translation import gettext as _
 # Create your models here. Comment.objects.filter(post=best_post)
 #
 class Author(models.Model):
-    user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True)
-    rating = models.IntegerField(default=0)
+    user = models.OneToOneField(User, on_delete = models.CASCADE, primary_key = True, )
+    rating = models.IntegerField(default=0, )
     def update_rating(self):
         result_rating = 0
         for post in self.post_set.all():
@@ -24,8 +25,8 @@ class Author(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=64, unique=True)
-    subscribers = models.ManyToManyField(User, through='UserSubscribe')
+    name = models.CharField(max_length=64, unique=True, help_text=_('category name'), )
+    subscribers = models.ManyToManyField(User, through='UserSubscribe', )
 
     def __str__(self):
         return f'{self.name}'
@@ -38,14 +39,14 @@ class Post(models.Model):
         ('AR', 'Article'),
         ('NW', 'New')
     ]
-    categories = models.ManyToManyField(Category, through='PostCategory')
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
-    post_type = models.CharField(max_length=2,choices=TYPES, default='AR')
-    created_at = models.DateTimeField(auto_now_add=True,editable=False)
-    updated_at = models.DateTimeField(auto_now=True,editable=True)
-    header = models.CharField(max_length=96,default='default')
-    text = models.TextField(default='default')
-    rating = models.IntegerField(default=0)
+    categories = models.ManyToManyField(Category, through='PostCategory', )
+    author = models.ForeignKey(Author, on_delete=models.CASCADE, )
+    post_type = models.CharField(max_length=2,choices=TYPES, default='AR', )
+    created_at = models.DateTimeField(auto_now_add=True,editable=False, )
+    updated_at = models.DateTimeField(auto_now=True,editable=True, )
+    header = models.CharField(max_length=96,default='default', )
+    text = models.TextField(default='default', )
+    rating = models.IntegerField(default=0, )
 
     def post_subscribers(self):
         subscribers = []
@@ -85,12 +86,12 @@ class PostCategory(models.Model):
 
 
 class Comment(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    text = models.TextField(default='default')
-    rating = models.IntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True, editable=False)
-    updated_at = models.DateTimeField(auto_now=True, editable=True)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, )
+    user = models.ForeignKey(User, on_delete=models.CASCADE, )
+    text = models.TextField(default='default', )
+    rating = models.IntegerField(default=0, )
+    created_at = models.DateTimeField(auto_now_add=True, editable=False, )
+    updated_at = models.DateTimeField(auto_now=True, editable=True, )
 
     def like(self):
         self.rating+=1

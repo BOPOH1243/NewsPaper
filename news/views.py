@@ -18,6 +18,7 @@ from django.http import HttpResponse
 from .tasks import hello, mail_distributon
 from django.views.decorators.cache import cache_page
 from django.core.cache import cache
+from django.utils.translation import gettext as _
 
 class NewsList(ListView):
     model = Post
@@ -107,5 +108,5 @@ def subscribe(request,pk):
 
 class TestView(View):
     def get(self, request):
-        mail_distributon.delay()
-        return HttpResponse('Hello!')
+        string = _('Hello world')
+        return HttpResponse(string)

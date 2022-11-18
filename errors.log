@@ -1,0 +1,1 @@
+2022-11-17 22:43:29,674 ERROR "GET /news/ HTTP/1.1" 500 181124 basehttp /home/kali/PycharmProjects/pythonProject/venv/lib/python3.9/site-packages/django/core/servers/basehttp.py None

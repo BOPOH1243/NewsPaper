@@ -1,5 +1,6 @@
 {% extends 'default.html' %}
 {% load custom_filters %}
+{% load i18n %}
 {% block title %}
 New
 {% endblock title %}
@@ -14,7 +15,6 @@ New
     </li>
     <li>
         {% load cache %}
-        {% cache 300 post_categories %}
         <ul>
             {% for category in new.categories.all %}
             <li>
@@ -24,15 +24,14 @@ New
 
             {% endfor %}
         </ul>
-        {% endcache %}
     </li>
     <li>
-        Опубликовано: {{new.created_at|date:'M d Y'}}; Изменено: {{new.updated_at|date:'M d Y'}}
+        {% trans "published" %}: {{new.created_at|date:'M d Y'}}; {% trans "updated" %}: {{new.updated_at|date:'M d Y'}}
     </li>
-    <a href="{{new.pk}}/update/">Изменить новость</a>
-    <a href="{{new.pk}}/delete/">Удалить новость</a>
+    <a href="{{new.pk}}/update/">{% trans "edit new" %}</a>
+    <a href="{{new.pk}}/delete/">{% trans "delete new" %}</a>
     <li>
-        rating: {{new.rating}}
+        {% trans "rating" %}: {{new.rating}}
     </li>
 </ul>
 {% endblock content %}
